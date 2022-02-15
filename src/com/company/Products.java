@@ -8,17 +8,9 @@ public abstract class Products {
     private int expDay;
     private boolean  isFresh;
     private String placeOfProduct;
-    private LocalDate localDate = LocalDate.now().minusDays(random.nextInt(200)+1);
-
+    private LocalDate localDate;
    private static Random random = new Random();
 
-    public Products(String productName, int expDay, boolean isFresh,String place) {
-        this.productName = productName;
-        this.isFresh = isFresh;
-        this.expDay = expDay;
-        this.placeOfProduct = place;
-//        this.localDate = LocalDate.now().minusDays(random.nextInt(200)+1);
-    }
 
     public Products(String productName, int expDay) {
         this.productName = productName;
@@ -26,7 +18,7 @@ public abstract class Products {
     }
 
     public void  isFresh(){
-        if(localDate.minusDays(expDay).isBefore(LocalDate.now())){
+        if(localDate.plusDays(expDay).compareTo(LocalDate.now())<=0){
             isFresh = false;
         }else {
             isFresh = true;
